@@ -16,13 +16,21 @@ protocol ServerResponse {
 class HomeViewModel {
     
     var numberOfCells : Int { return facts.count }
-    let ApiClient :FactsApiClient
+    private let ApiClient :FactsApiClient
     var facts  = Array<Fact>.init()
-    
-    let delegate: ServerResponse
+    private var selectedCell : Int?
+    private let delegate: ServerResponse
     
     func viewModelForCell(at index: Int) -> HomeCellViewModel {
         return HomeCellViewModel(fact: facts[index])
+    }
+    
+    func cellSelected(index: Int) {
+        selectedCell = index
+    }
+    
+    func selectedViewModel() -> HomeCellViewModel {
+        return viewModelForCell(at: selectedCell!)
     }
     
     init(delegate : ServerResponse) {
