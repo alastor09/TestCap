@@ -11,16 +11,16 @@ import UIKit
 
 extension UIViewController {
     
-    func DisplayAlert(_ title: String, message: String, OkBlock :(() -> Void)?) {
+    func displayAlert(_ title: String, message: String, okBlock :(() -> Void)?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "Ok", style: .default) { (alertAction) in
-            guard let okBlck = OkBlock else
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (alertAction) in
+            guard let okBlck = okBlock else
             {
                 return
             }
             okBlck()
         }
-        alertController.addAction(OKAction)
+        alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
     

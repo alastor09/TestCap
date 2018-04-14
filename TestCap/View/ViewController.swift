@@ -64,7 +64,7 @@ extension ViewController {
 extension ViewController: ServerResponse  {
     func stateChanged(success: Bool, error: String) {
         if !success {
-            self.DisplayAlert("Error", message: error, OkBlock: nil)
+            self.displayAlert("Error", message: error, okBlock: nil)
         }
         refreshUI()
     }

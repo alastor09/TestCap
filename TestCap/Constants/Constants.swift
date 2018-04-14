@@ -13,8 +13,6 @@ struct APPURL {
     // All the possible Domains
     private struct Domains {
         static let Prod = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl"
-        static let TestInvalid = "https://api.myjson.com/bins/lj5pb"
-        static let TestValid = "https://api.myjson.com/bins/1ajd3z"
     }
     
     private static let Domain = Domains.Prod
@@ -22,7 +20,7 @@ struct APPURL {
     // All the URls used inside Application
     private static let FactsEndPoint = "/facts.json"
     
-    static let FactsURL = Domains.TestValid
+    static let FactsURL = Domains.Prod + FactsEndPoint
     static let FactsLocalFileName = "dummy"
 }
 
