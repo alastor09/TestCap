@@ -8,20 +8,40 @@
 
 import Foundation
 
-class HomeViewModel {
-    var numberOfCells : Int = 0
-    
+protocol ServerResponse {
+    func stateChanged(success : Bool, error: String)
 }
 
-class HomeCellViewModel {
-    let title: String
-    let description: String
-    let imageUrl: String
+
+class HomeViewModel {
     
-    init(fact: Fact) {
-        title = fact.title
-        description = fact.description ?? "No Description"
-        imageUrl = fact.imageHref ?? APPIMAGES.NoImageAvailable
+    var numberOfCells : Int { return facts.count }
+    let ApiClient :FactsApiClient
+    var facts  = Array<Fact>.init()
+    
+    let delegate: ServerResponse
+    
+    func viewModelForCell(at index: Int) -> HomeCellViewModel {
+        return HomeCellViewModel(fact: facts[index])
     }
     
+    init(delegate : ServerResponse) {
+        self.delegate = delegate
+        ApiClient = FactsApiClient.init()
+    }
+    
+    func refreshData() {
+        ApiClient.fetchFeed { (result) in
+            switch result{
+            case .response(let data):
+                self.facts = data
+                self.delegate.stateChanged(success: true, error: "")
+                break
+            case .error(error: let error):
+                self.facts.removeAll()
+                self.delegate.stateChanged(success: false, error: error.localizedDescription)
+                break
+            }
+        }
+    }
 }

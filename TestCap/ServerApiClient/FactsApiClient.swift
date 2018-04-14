@@ -13,10 +13,10 @@ class FactsApiClient: ServerInteraction {
     typealias T = [Fact]
     
     // End point which is to be used for fetching
-    var endPoint: String = APPURL.FactsURL
+    internal var endPoint: String = APPURL.FactsURL
     
     // Ensures everything in Json is correct and in desired format
-    func canParse(jsonData: [String : Any]) -> Bool {
+    internal func canParse(jsonData: [String : Any]) -> Bool {
         if jsonData["rows"] != nil {
             return true
         }
@@ -24,10 +24,10 @@ class FactsApiClient: ServerInteraction {
     }
     
     // Parses the object and returns array of models
-    func parseFeed(jsonData: [String : Any]) -> [Fact] {
+    internal func parseFeed(jsonData: [String : Any]) -> [Fact] {
         var dataArray: [Fact] = []
         for data in jsonData["rows"] as! [[String : Any]] {
-            if shouldParse(data: data) {
+            if shouldParseRow(data: data) {
                 dataArray.append(Fact(jsonDict: data))
             }
         }
@@ -35,7 +35,7 @@ class FactsApiClient: ServerInteraction {
     }
     
     // Initialiser which Parses the JSON object and returns a model object from json
-    func shouldParse(data: [String: Any]) -> Bool {
+    internal func shouldParseRow(data: [String: Any]) -> Bool {
         guard (data["title"] as? String) != nil else {
             return false
         }

@@ -9,7 +9,7 @@
 import Foundation
 
 // Model to represent a Fact in JSON Object
-class Fact {
+struct Fact {
     var title: String
     var description: String?
     var imageHref: String?
