@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ImageCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -18,6 +21,16 @@ class ImageCollectionViewCell: UICollectionViewCell {
     func loadData(viewModel : HomeCellViewModel) {
         self.viewModel = viewModel
         self.titleLabel.text = self.viewModel.title
-        self.imageView.image = UIImage(named: viewModel.imageUrl)
+        if let url = viewModel.imageUrl {
+            self.imageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: APPIMAGES.NoImageAvailable))
+        }
+        else
+        {
+            self.imageView.image = UIImage(named: APPIMAGES.NoImageAvailable)
+        }
+    }
+    
+    func setWidth(width: CGFloat) {
+        imageViewWidthConstraint.constant = width
     }
 }

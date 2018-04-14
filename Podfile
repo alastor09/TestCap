@@ -6,7 +6,8 @@ target 'TestCap' do
   use_frameworks!
 
   # Pods for TestCap
-    pod 'Alamofire', '~> 4.5'
+    	pod 'Alamofire', '~> 4.5'
+	pod 'SDWebImage', '~> 4.0'
   target 'TestCapTests' do
     inherit! :search_paths
     # Pods for testing

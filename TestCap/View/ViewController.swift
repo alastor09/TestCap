@@ -18,6 +18,10 @@ class ViewController: UICollectionViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomeViewModel.init(delegate: self)
+        
+        if let flowLayout = self.collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+        }
     }
     
     @IBAction func refreshClicked(_ sender: Any) {
@@ -47,19 +51,13 @@ extension ViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ImageCollectionViewCell
         cell.loadData(viewModel: viewModel.viewModelForCell(at: indexPath.row))
+        cell.setWidth(width: self.view.frame.width)
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.cellSelected(index: indexPath.row)
         self.performSegue(withIdentifier: showDetailSegue , sender: nil)
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { [weak self] context in
-            self?.collectionView?.collectionViewLayout.invalidateLayout()
-            }, completion: nil)
     }
 }
 
@@ -69,28 +67,6 @@ extension ViewController: ServerResponse  {
             self.DisplayAlert("Error", message: error, OkBlock: nil)
         }
         refreshUI()
-    }
-}
-
-// MARK: UICollectionViewDelegateFlowLayout protocol methods
-extension ViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        let columns: Int = {
-            var count = 2
-            if traitCollection.horizontalSizeClass == .regular {
-                count = count + 1
-            }
-            if collectionView.bounds.width > collectionView.bounds.height {
-                count = count + 1
-            }
-            return count
-        }()
-        let totalSpace = flowLayout.sectionInset.left
-            + flowLayout.sectionInset.right
-            + (flowLayout.minimumInteritemSpacing * CGFloat(columns - 1))
-        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(columns))
-        return CGSize(width: size, height: 90)
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DetailViewController: UIViewController {
     
@@ -27,11 +28,19 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        decideOrientation()
-        
         descriptionLabel.text = viewModel.desc
-        topImageView.image = UIImage(named: viewModel.imageUrl)
+        if let url = viewModel.imageUrl {
+            self.topImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: APPIMAGES.NoImageAvailable))
+        }
+        else
+        {
+            self.topImageView.image = UIImage(named: APPIMAGES.NoImageAvailable)
+        }
         self.title = viewModel.title
+    }
+    
+    override func viewDidLayoutSubviews() {
+        decideOrientation()
     }
 }
 

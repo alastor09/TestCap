@@ -14,13 +14,13 @@ class HomeCellViewModel {
     
     let title: String
     let desc: String
-    let imageUrl: String
+    var imageUrl: String?
     
     init(fact: Fact) {
         self.fact = fact
         
         title = fact.title
         desc = fact.description ?? "No Description"
-        imageUrl = APPIMAGES.NoImageAvailable
+        imageUrl = fact.imageHref
     }
 }
