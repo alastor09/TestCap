@@ -4,20 +4,43 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TestCap copy 2.xcscheme</key>
+		<key>TestCap.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>TestCapTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>TestCap copy.xcscheme</key>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>16CD6EA720817C3B0077FE1A</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>primary</key>
+			<true/>
 		</dict>
-		<key>TestCap.xcscheme</key>
+		<key>16CD6EBB20817C3C0077FE1A</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16CD6F052081C9BD0077FE1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16CD6F252081D8A10077FE1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16CD6F422081DA220077FE1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

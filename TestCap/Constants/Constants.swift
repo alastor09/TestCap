@@ -23,4 +23,9 @@ struct APPURL {
     private static let FactsEndPoint = "/facts.json"
     
     static let FactsURL = Domains.TestValid
+    static let FactsLocalFileName = "dummy"
+}
+
+struct APPIMAGES {
+    static let NoImageAvailable = "NoImageAvailable"
 }
