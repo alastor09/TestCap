@@ -21,16 +21,30 @@ class TestCapTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    // Test case to test Complete fetching and parsing logic
+    func testDataFetching() {
+        let apiClient = FactsApiClient.init()
+        // 1. Define an expectation
+        let expectn = expectation(description: "Facts are fetched and Are parsed")
+        
+        // 2. Exercise the asynchronous code
+        apiClient.fetchFeed(completionHandler: { (result) in
+            switch result {
+            case .response(let data):
+                XCTAssertTrue(!data.isEmpty)
+                break
+            case .error(error: let error):
+                XCTFail("Error occured with Fetching Data\(error.localizedDescription)")
+                break
+            }
+            expectn.fulfill()
+        })
+        
+        // 3. Wait for the expectation to be fulfilled
+        waitForExpectations(timeout: 4) { error in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
         }
     }
-    
 }
