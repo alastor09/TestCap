@@ -18,8 +18,8 @@ class DetailViewController: UIViewController {
     func loadData(vm: HomeCellViewModel) {
         viewModel = vm
     }
-    
-    
+    // AS SDWebimage cache images internally so its safe to ask Image from Sdwebimage
+    // As it will check internal cache and memory before making a request again for same URL
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionLabel.text = viewModel.desc

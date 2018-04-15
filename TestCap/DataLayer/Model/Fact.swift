@@ -10,15 +10,9 @@ import Foundation
 
 // Model to represent a Fact in JSON Object
 struct Fact {
-    var title: String
-    var description: String?
-    var imageHref: String?
-    
-    init(title: String, description: String?, imageHref: String?) {
-        self.title = title
-        self.description = description
-        self.imageHref = imageHref
-    }
+    let title: String
+    let description: String?
+    let imageHref: String?
     
     // Initialiser which Parses the JSON object and returns a model object from json
     init(jsonDict: [String: Any]) {

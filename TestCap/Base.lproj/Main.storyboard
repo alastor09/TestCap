@@ -32,14 +32,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zpa-oS-SSg">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zpa-oS-SSg">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="180"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="fel-0H-J3C"/>
-                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ka-ay-Pkt">
                                             <rect key="frame" x="0.0" y="179.66666666666666" width="200" height="20.333333333333343"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="OVE-hC-F8F"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -58,7 +58,6 @@
                                 <size key="customSize" width="200" height="200"/>
                                 <connections>
                                     <outlet property="imageView" destination="Zpa-oS-SSg" id="TAb-a7-O6J"/>
-                                    <outlet property="imageViewWidthConstraint" destination="fel-0H-J3C" id="MSh-qw-WKU"/>
                                     <outlet property="titleLabel" destination="7Ka-ay-Pkt" id="BYR-p2-hWG"/>
                                 </connections>
                             </collectionViewCell>

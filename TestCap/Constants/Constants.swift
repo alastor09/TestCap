@@ -9,6 +9,8 @@
 import Foundation
 
 // Constants for the Application
+
+// All possible URLs defined in here, so that can easily be changed
 struct APPURL {
     // All the possible Domains
     private struct Domains {
@@ -24,6 +26,11 @@ struct APPURL {
     static let FactsLocalFileName = "dummy"
 }
 
+// Constants for images used inside App
 struct APPIMAGES {
     static let NoImageAvailable = "NoImageAvailable"
+}
+// Constants for all the Text used in App
+struct APPDisplayText {
+    static let NoDescriptionAvailable = "No Description Available"
 }

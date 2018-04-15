@@ -22,7 +22,7 @@ class HomeViewModel {
     private let delegate: ServerResponse
     
     func viewModelForCell(at index: Int) -> HomeCellViewModel {
-        return HomeCellViewModel(fact: facts[index])
+        return HomeCellViewModel(fact: facts[index], index: index)
     }
     
     func cellSelected(index: Int) {
@@ -38,6 +38,7 @@ class HomeViewModel {
         ApiClient = FactsApiClient.init()
     }
     
+    // Download the Feed and show it on UI
     func refreshData() {
         ApiClient.fetchFeed { (result) in
             switch result{
