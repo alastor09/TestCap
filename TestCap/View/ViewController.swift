@@ -35,7 +35,11 @@ class ViewController: UICollectionViewController{
     }
     
     func refreshUI() {
+        self.cellSizeCache.removeAllObjects()
         self.collectionView?.reloadData()
+        if viewModel.facts.count > 0{
+            self.collectionView?.selectItem(at: IndexPath.init(row: 0, section: 0), animated: false, scrollPosition: .top)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
