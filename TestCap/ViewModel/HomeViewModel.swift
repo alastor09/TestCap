@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ServerResponse {
+protocol ServerResponse : AnyObject {
     func stateChanged(success : Bool, error: String)
 }
 
@@ -19,7 +19,7 @@ class HomeViewModel {
     private let ApiClient :FactsApiClient
     var facts  = Array<Fact>.init()
     private var selectedCell : Int?
-    private let delegate: ServerResponse
+    private weak var delegate: ServerResponse?
     
     func viewModelForCell(at index: Int) -> HomeCellViewModel {
         return HomeCellViewModel(fact: facts[index], index: index)
@@ -44,11 +44,11 @@ class HomeViewModel {
             switch result{
             case .response(let data):
                 self.facts = data
-                self.delegate.stateChanged(success: true, error: "")
+                self.delegate?.stateChanged(success: true, error: "")
                 break
             case .error(error: let error):
                 self.facts.removeAll()
-                self.delegate.stateChanged(success: false, error: error.localizedDescription)
+                self.delegate?.stateChanged(success: false, error: error.localizedDescription)
                 break
             }
         }
